@@ -2,7 +2,7 @@ export const planing = {baseTrig: [], baseNiv: [], niv: [], trig: []};
 
 
 //Загрузка файлов
-const json = '../server/data/koordinats.json'; // json файл Работы
+const json = 'https://add-edit-point-in-json-fail-server-git.onrender.com/data/koordinats.json'; // json файл Работы
 const jsonPlaning = './data/planing.json'; // json файл Плана
 try {
     // Загружаем JSON файл Плана
