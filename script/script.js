@@ -6,10 +6,15 @@ console.log(edit, planing);
     let pointBaseNiv = document.querySelector("#levelingBasic"); 
     let levelingBaseLeng = document.querySelector("#levelingBasicLength");//количество
     let planingBaseNiv =  parsinWork(planing.baseNiv);
-    console.log(Object.keys(planingBaseNiv).length);
-    
 
-    if (Object.keys(planingBaseNiv).length > 0) {
+    
+    if (isCompletelyEmpty(planingBaseNiv)) {
+        let nouWork = document.createElement('div');
+        nouWork.className = "pointJobs";
+        nouWork.textContent = "No work leveling points"
+        pointBaseNiv.appendChild(nouWork);
+        console.log("Базовых точек для невилированию нет"); 
+    } else {
         levelingBaseLeng.textContent = planingBaseNiv.length+1;
         planingBaseNiv.forEach(row => {
            if (row["position"] !== undefined) { 
@@ -38,13 +43,7 @@ console.log(edit, planing);
             jobDivNivError.appendChild(pointError);
             console.log("Базовые точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
-        }) 
-    } else {
-        let nouWork = document.createElement('div');
-        nouWork.className = "pointJobs";
-        nouWork.textContent = "No work leveling points"
-        pointBaseNiv.appendChild(nouWork);
-        console.log("Базовых точек для невилированию нет");
+        })
     }
 
     //Нивелирование - рабочие 
@@ -52,7 +51,13 @@ console.log(edit, planing);
     let pointJobsNiv = document.querySelector("#levelingJobs"); 
     let levelingJobsLeng = document.querySelector("#levelingJobsLength");//количество
     let planingWorkNiv =  parsinWork(planing.niv);
-    if (Object.keys(planingWorkNiv).length > 0) { 
+    if (isCompletelyEmpty(planingWorkNiv)) { 
+        let nouWork = document.createElement('div');
+        nouWork.className = "pointJobs";
+        nouWork.textContent = "No work leveling points"
+        pointJobsNiv.appendChild(nouWork);
+        console.log("Работы по невилированию нет");
+    }else{
         levelingJobsLeng.textContent = planingWorkNiv.length+1;
         planingWorkNiv.forEach(row => {
            if (row["position"] !== undefined) { 
@@ -82,12 +87,6 @@ console.log(edit, planing);
             console.log("Точки НИВ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
         })  
-    }else{
-        let nouWork = document.createElement('div');
-        nouWork.className = "pointJobs";
-        nouWork.textContent = "No work leveling points"
-        pointJobsNiv.appendChild(nouWork);
-        console.log("Работы по невилированию нет");
     }
 
     //Тахеометрия - начальные точки(базовые)
@@ -95,7 +94,13 @@ console.log(edit, planing);
     let pointBaseTax = document.querySelector("#tacheometryBasic"); 
     let tacheometryBaseLength = document.querySelector("#tacheometryBasicLength");//количество
     let planingBaseTrig =  parsinWork(planing.baseTrig); 
-    if (Object.keys(planingBaseTrig).length > 0) {
+    if (isCompletelyEmpty(planingBaseTrig)) {
+        let nouWork = document.createElement('div');
+        nouWork.className = "pointJobs";
+        nouWork.textContent = "No work tacheometry points"
+        pointBaseTax.appendChild(nouWork);
+        console.log("Базовых точек для тахеoметрии нет");
+    }else{
         tacheometryBaseLength.textContent = planingBaseTrig.length+1;
         planingBaseTrig.forEach(row => {
            if (row["position"] !== undefined) {
@@ -125,12 +130,6 @@ console.log(edit, planing);
             console.log("Базовые точки ТАХ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
         }) 
-    }else{
-        let nouWork = document.createElement('div');
-        nouWork.className = "pointJobs";
-        nouWork.textContent = "No work tacheometry points"
-        pointBaseTax.appendChild(nouWork);
-        console.log("Базовых точек для тахеoметрии нет");
     }
     
     //Тахеометрия - рабочие 
@@ -138,7 +137,13 @@ console.log(edit, planing);
     let pointJobsTax = document.querySelector("#tacheometryJobs"); 
     let tacheometryJobsLength = document.querySelector("#tacheometryJobsLength");//количество
     let planingWorkTax =  parsinWork(planing.trig); 
-    if (Object.keys(planingWorkTax).length > 0) {
+    if (isCompletelyEmpty(planingWorkTax)) {
+        let nouWork = document.createElement('div');
+        nouWork.className = "pointJobs";
+        nouWork.textContent = "No work tacheometry points"
+        pointJobsTax.appendChild(nouWork);
+        console.log("Работы по тахеoметрии нет");
+    }else{
         tacheometryJobsLength.textContent = planingWorkTax.length+1;
         planingWorkTax.forEach(row => {
            if (row["position"] !== undefined) {
@@ -168,12 +173,6 @@ console.log(edit, planing);
             console.log("Точки ТАХ с числом - "+row["namber"]+" в базе не найдены"); 
             }  
         }) 
-    }else{
-        let nouWork = document.createElement('div');
-        nouWork.className = "pointJobs";
-        nouWork.textContent = "No work tacheometry points"
-        pointJobsTax.appendChild(nouWork);
-        console.log("Работы по тахеoметрии нет");
     }    
 
 //Функция парсинга информации переданной из planing.js
@@ -247,4 +246,20 @@ for (let i = 0; i < importPoint.children.length; i++) {
             }
         }
     })
+}
+let add={};
+if (isCompletelyEmpty(planingBaseNiv)) {
+    console.log("Пуст");
+} else {
+    console.log("Полон");
+}
+// Проверка пустого объекта
+function isCompletelyEmpty(obj) {
+    if (obj === null || obj === undefined) return true; // null или undefined
+    if (typeof obj !== 'object') return true; // Не объект
+    if (Array.isArray(obj)) return obj.length === 0; // Пустой массив
+    if (Object.keys(obj).length === 0) return true; // Пустой объект
+
+    // Глубокая проверка вложенных объектов
+    return Object.values(obj).every(value => isCompletelyEmpty(value));
 }
