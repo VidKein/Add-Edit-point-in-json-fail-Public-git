@@ -5,7 +5,7 @@ console.log(edit, planing);
     //Информацинный блок Нивелирования    
     let pointBaseNiv = document.querySelector("#levelingBasic"); 
     let levelingBaseLeng = document.querySelector("#levelingBasicLength");//количество
-    let planingBaseNiv =  parsinWork(planing.baseNiv);
+    let planingBaseNiv =  parsinWork(planing["baseNiv"]);
 
     
     if (isCompletelyEmpty(planingBaseNiv)) {
@@ -247,7 +247,7 @@ for (let i = 0; i < importPoint.children.length; i++) {
         }
     })
 }
-let add={};
+
 if (isCompletelyEmpty(planingBaseNiv)) {
     console.log("Пуст");
 } else {
