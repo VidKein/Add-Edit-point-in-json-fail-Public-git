@@ -19,7 +19,7 @@ async function funktionalAdd() {
     let date = document.getElementById("date").value;
     //add.push(`${id}:{position:[${positionX},${positionY}], vycka: ${vyska}, date: ${date}, systemCoordinates : ${systemCoordinates}, positionType: ${positionType}}`);    
     //console.log(add);
-    const API_URL = 'http://localhost:4000/data';
+    const API_URL = 'https://add-edit-point-in-json-fail-server-git.onrender.com';
     const response = await fetch(API_URL, {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
