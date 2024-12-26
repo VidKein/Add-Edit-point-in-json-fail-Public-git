@@ -6,6 +6,8 @@ console.log(edit, planing);
     let pointBaseNiv = document.querySelector("#levelingBasic"); 
     let levelingBaseLeng = document.querySelector("#levelingBasicLength");//количество
     let planingBaseNiv =  parsinWork(planing.baseNiv);
+    console.log(planingBaseNiv);
+    
     if (planingBaseNiv.length > 0) {
         levelingBaseLeng.textContent = planingBaseNiv.length+1;
         planingBaseNiv.forEach(row => {
