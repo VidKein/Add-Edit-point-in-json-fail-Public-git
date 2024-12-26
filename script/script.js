@@ -5,10 +5,10 @@ console.log(edit, planing);
     //Информацинный блок Нивелирования    
     let pointBaseNiv = document.querySelector("#levelingBasic"); 
     let levelingBaseLeng = document.querySelector("#levelingBasicLength");//количество
-    let planingBaseNiv =  parsinWork(planing["baseNiv"]);
-
+    let planingBaseNiv =  parsinWork(planing.baseNiv);
     
-    if (isCompletelyEmpty(planingBaseNiv)) {
+    
+    if (isArrayEmpty(planingBaseNiv)) {
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
         nouWork.textContent = "No work leveling points"
@@ -51,7 +51,7 @@ console.log(edit, planing);
     let pointJobsNiv = document.querySelector("#levelingJobs"); 
     let levelingJobsLeng = document.querySelector("#levelingJobsLength");//количество
     let planingWorkNiv =  parsinWork(planing.niv);
-    if (isCompletelyEmpty(planingWorkNiv)) { 
+    if (isArrayEmpty(planingWorkNiv)) { 
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
         nouWork.textContent = "No work leveling points"
@@ -94,7 +94,7 @@ console.log(edit, planing);
     let pointBaseTax = document.querySelector("#tacheometryBasic"); 
     let tacheometryBaseLength = document.querySelector("#tacheometryBasicLength");//количество
     let planingBaseTrig =  parsinWork(planing.baseTrig); 
-    if (isCompletelyEmpty(planingBaseTrig)) {
+    if (isArrayEmpty(planingBaseTrig)) {
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
         nouWork.textContent = "No work tacheometry points"
@@ -137,7 +137,7 @@ console.log(edit, planing);
     let pointJobsTax = document.querySelector("#tacheometryJobs"); 
     let tacheometryJobsLength = document.querySelector("#tacheometryJobsLength");//количество
     let planingWorkTax =  parsinWork(planing.trig); 
-    if (isCompletelyEmpty(planingWorkTax)) {
+    if (isArrayEmpty(planingWorkTax)) {
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
         nouWork.textContent = "No work tacheometry points"
@@ -247,13 +247,13 @@ for (let i = 0; i < importPoint.children.length; i++) {
         }
     })
 }
-
+/*
+// Проверка пустого объекта
 if (isCompletelyEmpty(planingBaseNiv)) {
     console.log("Пуст");
 } else {
     console.log("Полон");
 }
-// Проверка пустого объекта
 function isCompletelyEmpty(obj) {
     if (obj === null || obj === undefined) return true; // null или undefined
     if (typeof obj !== 'object') return true; // Не объект
@@ -262,4 +262,14 @@ function isCompletelyEmpty(obj) {
 
     // Глубокая проверка вложенных объектов
     return Object.values(obj).every(value => isCompletelyEmpty(value));
+}
+*/
+// Проверка пустого массива
+if (isArrayEmpty(planingBaseNiv)) {
+    console.log("массив Пуст");
+} else {
+    console.log("массив Полон");
+}
+function isArrayEmpty(arr) {
+    return Array.isArray(arr) && arr.length === 0;
 }
