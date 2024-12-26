@@ -6,8 +6,6 @@ console.log(edit, planing);
     let pointBaseNiv = document.querySelector("#levelingBasic"); 
     let levelingBaseLeng = document.querySelector("#levelingBasicLength");//количество
     let planingBaseNiv =  parsinWork(planing.baseNiv);
-    
-    
     if (isArrayEmpty(planingBaseNiv)) {
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
@@ -247,12 +245,14 @@ for (let i = 0; i < importPoint.children.length; i++) {
         }
     })
 }
-/*
+
+let obj = {1:"0"};
+console.log(obj);
 // Проверка пустого объекта
 if (isCompletelyEmpty(planingBaseNiv)) {
-    console.log("Пуст");
+    console.log("обьект Пуст");
 } else {
-    console.log("Полон");
+    console.log("обьект Полон");
 }
 function isCompletelyEmpty(obj) {
     if (obj === null || obj === undefined) return true; // null или undefined
@@ -263,9 +263,11 @@ function isCompletelyEmpty(obj) {
     // Глубокая проверка вложенных объектов
     return Object.values(obj).every(value => isCompletelyEmpty(value));
 }
-*/
+
 // Проверка пустого массива
-if (isArrayEmpty(planingBaseNiv)) {
+let arr = ["0"];
+console.log(arr);
+if (isArrayEmpty(arr)) {
     console.log("массив Пуст");
 } else {
     console.log("массив Полон");
