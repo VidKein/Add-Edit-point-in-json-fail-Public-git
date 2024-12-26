@@ -246,9 +246,9 @@ for (let i = 0; i < importPoint.children.length; i++) {
     })
 }
 
+// Проверка пустого объекта
 let obj = {1:"0"};
 console.log(obj);
-// Проверка пустого объекта
 if (isCompletelyEmpty(planingBaseNiv)) {
     console.log("обьект Пуст");
 } else {
@@ -265,7 +265,7 @@ function isCompletelyEmpty(obj) {
 }
 
 // Проверка пустого массива
-let arr = ["0"];
+let arr = ["0000"];
 console.log(arr);
 if (isArrayEmpty(arr)) {
     console.log("массив Пуст");
@@ -273,5 +273,27 @@ if (isArrayEmpty(arr)) {
     console.log("массив Полон");
 }
 function isArrayEmpty(arr) {
-    return Array.isArray(arr) && arr.length === 0;
+    // Проверка на null, undefined и тип
+    if (!arr || typeof arr !== 'object') return true;
+
+    // Проверка на массив
+    if (!Array.isArray(arr)) return true;
+
+    // Проверка длины массива
+    return arr.length === 0;
+}
+
+//Определение массив это или объект
+console.log("planing - "+getType(planing));
+console.log("planing.baseNiv - "+getType(planing.baseNiv));
+console.log("planingBaseNiv - "+getType(planingBaseNiv));
+
+function getType(value) {
+    if (Array.isArray(value)) {
+        return 'array';
+    } else if (value !== null && typeof value === 'object') {
+        return 'object';
+    } else {
+        return typeof value;
+    }
 }
