@@ -6,9 +6,10 @@ console.log(edit, planing);
     let pointBaseNiv = document.querySelector("#levelingBasic"); 
     let levelingBaseLeng = document.querySelector("#levelingBasicLength");//количество
     let planingBaseNiv =  parsinWork(planing.baseNiv);
-    console.log(planingBaseNiv);
+    console.log(Object.keys(planingBaseNiv).length);
     
-    if (planingBaseNiv.length > 0) {
+
+    if (Object.keys(planingBaseNiv).length > 0) {
         levelingBaseLeng.textContent = planingBaseNiv.length+1;
         planingBaseNiv.forEach(row => {
            if (row["position"] !== undefined) { 
@@ -51,7 +52,7 @@ console.log(edit, planing);
     let pointJobsNiv = document.querySelector("#levelingJobs"); 
     let levelingJobsLeng = document.querySelector("#levelingJobsLength");//количество
     let planingWorkNiv =  parsinWork(planing.niv);
-    if (planingWorkNiv.length > 0) { 
+    if (Object.keys(planingWorkNiv).length > 0) { 
         levelingJobsLeng.textContent = planingWorkNiv.length+1;
         planingWorkNiv.forEach(row => {
            if (row["position"] !== undefined) { 
@@ -94,7 +95,7 @@ console.log(edit, planing);
     let pointBaseTax = document.querySelector("#tacheometryBasic"); 
     let tacheometryBaseLength = document.querySelector("#tacheometryBasicLength");//количество
     let planingBaseTrig =  parsinWork(planing.baseTrig); 
-    if (planingBaseTrig.length > 0) {
+    if (Object.keys(planingBaseTrig).length > 0) {
         tacheometryBaseLength.textContent = planingBaseTrig.length+1;
         planingBaseTrig.forEach(row => {
            if (row["position"] !== undefined) {
@@ -137,7 +138,7 @@ console.log(edit, planing);
     let pointJobsTax = document.querySelector("#tacheometryJobs"); 
     let tacheometryJobsLength = document.querySelector("#tacheometryJobsLength");//количество
     let planingWorkTax =  parsinWork(planing.trig); 
-    if (planingWorkTax.length > 0) {
+    if (Object.keys(planingWorkTax).length > 0) {
         tacheometryJobsLength.textContent = planingWorkTax.length+1;
         planingWorkTax.forEach(row => {
            if (row["position"] !== undefined) {
