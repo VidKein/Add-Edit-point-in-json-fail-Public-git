@@ -1,6 +1,5 @@
 export const planing = {baseTrig: [], baseNiv: [], niv: [], trig: []};
 
-
 //Загрузка файлов
 const json = 'https://add-edit-point-in-json-fail-server-git.onrender.com/data/koordinats.json'; // json файл Работы
 const jsonPlaning = './data/planing.json'; // json файл Плана
@@ -17,7 +16,7 @@ try {
     const jsonData = await jsonResponseData.json();
     //Для контроля
     console.log('JSON данные Data:', jsonData.Base, 'JSON данные Data:', jsonData.poligons);
-
+    
     //Подготовливаем план работы
     //Базовые тригонометрия
     jsonDataPlaning.Base.trig.map(point=>{

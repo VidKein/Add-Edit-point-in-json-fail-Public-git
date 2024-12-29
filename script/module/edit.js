@@ -1,1 +1,1 @@
-export const edit = ["edit"];
+export const edit = {"id modul":"edit"};

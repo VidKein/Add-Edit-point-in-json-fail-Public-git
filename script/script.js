@@ -250,9 +250,9 @@ for (let i = 0; i < importPoint.children.length; i++) {
 let obj = {1:"0"};
 console.log(obj);
 if (isCompletelyEmpty(planingBaseNiv)) {
-    console.log("обьект Пуст");
+    console.log("- обьект Пуст");
 } else {
-    console.log("обьект Полон");
+    console.log("- обьект Полон");
 }
 function isCompletelyEmpty(obj) {
     if (obj === null || obj === undefined) return true; // null или undefined
@@ -268,9 +268,9 @@ function isCompletelyEmpty(obj) {
 let arr = ["0000"];
 console.log(arr);
 if (isArrayEmpty(arr)) {
-    console.log("массив Пуст");
+    console.log("- массив Пуст");
 } else {
-    console.log("массив Полон");
+    console.log("- массив Полон");
 }
 function isArrayEmpty(arr) {
     // Проверка на null, undefined и тип
@@ -284,9 +284,11 @@ function isArrayEmpty(arr) {
 }
 
 //Определение массив это или объект
-console.log("planing - "+getType(planing));
-console.log("planing.baseNiv - "+getType(planing.baseNiv));
-console.log("planingBaseNiv - "+getType(planingBaseNiv));
+console.log("- edit - "+getType(edit));
+console.log("- planing - "+getType(planing));
+console.log("- planing.baseNiv - "+getType(planing.baseNiv));
+console.log("- planingBaseNiv - "+getType(planingBaseNiv));
+console.log("- parsinWork - "+getType(parsinWork(planing.trig)));
 
 function getType(value) {
     if (Array.isArray(value)) {
