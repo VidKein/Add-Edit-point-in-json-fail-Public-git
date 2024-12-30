@@ -1,4 +1,5 @@
-export const planing = {baseTrig: [], baseNiv: [], niv: [], trig: []};
+const planing = {baseTrig: [], baseNiv: [], niv: [], trig: []};
+export {planing};
 
 //Загрузка файлов
 const json = 'https://add-edit-point-in-json-fail-server-git.onrender.com/data/koordinats.json'; // json файл Работы
@@ -50,6 +51,8 @@ try {
             planing.niv.push(`namber: ${point}  Data not found in database`);
         }
     })
+
+document.dispatchEvent(new CustomEvent("planningWork", { detail: {baseNiv: planing.baseNiv, baseTrig: planing.baseTrig ,planningNiv: planing.niv, planningTrig: planing.trig}}));
 
 } catch (error) {
     console.error('Ошибка при обработке файла:', error);

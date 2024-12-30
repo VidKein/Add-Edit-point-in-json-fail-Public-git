@@ -1,6 +1,9 @@
 import { edit } from './module/edit.js';//edit
 import { planing } from './module/planing.js'//planing
 console.log(edit, planing);
+document.addEventListener("planningWork", (planning) => {
+    console.log(planning.detail.baseNiv, planning.detail.baseTrig, planning.detail.planningNiv, planning.detail.planningTrig);
+});
     //Нивелирование - начальные точки(базовые)
     //Информацинный блок Нивелирования    
     let pointBaseNiv = document.querySelector("#levelingBasic"); 
@@ -135,6 +138,8 @@ console.log(edit, planing);
     let pointJobsTax = document.querySelector("#tacheometryJobs"); 
     let tacheometryJobsLength = document.querySelector("#tacheometryJobsLength");//количество
     let planingWorkTax =  parsinWork(planing.trig); 
+    console.log(planingWorkTax);
+    
     if (isArrayEmpty(planingWorkTax)) {
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
@@ -174,6 +179,7 @@ console.log(edit, planing);
     }    
 
 //Функция парсинга информации переданной из planing.js
+/*
 function parsinWork(planing) {
     let arrayPoint = [];
     planing.forEach(point => {
@@ -191,12 +197,54 @@ function parsinWork(planing) {
             if (match[5]) parsedData["JTSK"] = match[5].trim();
             if (match[6]) parsedData["positionType"] = match[6];
         }
+       
         arrayPoint.push(parsedData); 
     });
     return arrayPoint;
+};
+*/
+function parsinWork(planing) {
+    return planing.map(dataString => {
+        const data = {
+            namber: null,
+            position: [null, null],
+            vycka: null,
+            date: null,
+            JTSK: null,
+            positionType: null
+        };
+
+        const regex = /namber:\s*([\w\d\(\)-]+)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d.]+)|JTSK:\s*([\w\d\s]+)|positionType:\s*(\w+)/g;
+
+        let match;
+        while ((match = regex.exec(dataString)) !== null) {
+            if (match[1]) {
+                data["namber"] = match[1];
+            }
+            if (match[2]) {
+                data["position"] = match[2]
+                    .split(/[,\s]+/) // Разделяем по пробелам и запятым
+                    .filter(num => num.trim() !== "")
+                    .map(Number); // Преобразуем в числа
+            }
+            if (match[3]) {
+                data["vycka"] = parseFloat(match[3].replace(',', '.'));
+            }
+            if (match[4]) {
+                const [day, month, year] = match[4].split('.');
+                data["date"] = `${year}-${month}-${day}`; // Преобразуем в ISO-формат
+            }
+            if (match[5]) {
+                data["JTSK"] = match[5].trim();
+            }
+            if (match[6]) {
+                data["positionType"] = match[6];
+            }
+        }
+
+        return data;
+    });
 }
-
-
 //Effects анимация accordion
 let acc = document.getElementsByClassName("accordion");
 for (let i = 0; i < acc.length; i++) {
