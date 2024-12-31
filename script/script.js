@@ -15,7 +15,8 @@ function layerControlPoint(planingBaseNiv, planingBaseTrig, planingWorkNiv, plan
         console.log("Базовых точек для невилированию нет"); 
     } else {
         levelingBaseLeng.textContent = planingBaseNiv.length+1;
-        planingBaseNiv.forEach(row => {
+        let parsedData =  parsinWork(planingBaseNiv);
+        parsedData.forEach(row => {
            if (row["position"] !== undefined) { 
             //Создаем новый div
             const jobDivNiv = document.createElement('div');
@@ -57,7 +58,8 @@ function layerControlPoint(planingBaseNiv, planingBaseTrig, planingWorkNiv, plan
         console.log("Работы по невилированию нет");
     }else{
         levelingJobsLeng.textContent = planingWorkNiv.length+1;
-        planingWorkNiv.forEach(row => {
+        let parsedData =  parsinWork(planingWorkNiv);
+        parsedData.forEach(row => {
            if (row["position"] !== undefined) { 
             //Создаем новый div
             const jobDivNiv = document.createElement('div');
@@ -99,7 +101,8 @@ function layerControlPoint(planingBaseNiv, planingBaseTrig, planingWorkNiv, plan
         console.log("Базовых точек для тахеoметрии нет");
     }else{
         tacheometryBaseLength.textContent = planingBaseTrig.length+1;
-        planingBaseTrig.forEach(row => {
+        let parsedData =  parsinWork(planingBaseTrig);
+        parsedData.forEach(row => {
            if (row["position"] !== undefined) {
             //Создаем новый div
             const jobDivTax = document.createElement('div');
@@ -141,7 +144,8 @@ function layerControlPoint(planingBaseNiv, planingBaseTrig, planingWorkNiv, plan
         console.log("Работы по тахеoметрии нет");
     }else{
         tacheometryJobsLength.textContent = planingWorkTax.length+1;
-        planingWorkTax.forEach(row => {
+        let parsedData =  parsinWork(planingWorkTax);
+        parsedData.forEach(row => {
            if (row["position"] !== undefined) {
             //Создаем новый div
             const jobDivTax = document.createElement('div');
