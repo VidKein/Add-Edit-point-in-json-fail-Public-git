@@ -140,7 +140,7 @@ document.addEventListener("planningWork", (planning) => {
     let planingWorkTax =  parsinWork(planing.trig); 
     console.log(planingWorkTax);
     
-    if (isArrayEmpty(planingWorkTax)) {
+    if (isCompletelyEmpty(planingWorkTax)) {
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
         nouWork.textContent = "No work tacheometry points"
@@ -186,23 +186,23 @@ function parsinWork(planing) {
         const parsedData = {};
         const regex = /namber:\s*([\w\d\(\)-]+)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d.]+)|JTSK:\s*([\w\d\s]+)|positionType:\s*(\w+)/g;
         let match;
-        while ((match = regex.exec(point)) !== null) {            
+        while ((match = regex.exec(point)) !== null) {          
             if (match[1]) parsedData["namber"] = match[1];
             if (match[2]) parsedData["position"] = match[2]
                 .split(/[,\s]+/) // Разделяем по запятым и пробелам
                 .filter(num => num.trim() !== "") // Убираем пустые строки
                 .map(Number); // Преобразуем в числа
-            if (match[3]) parsedData["vycka"] = parseFloat(match[3].replace(',', '.'));;
+            if (match[3]) parsedData["vycka"] = parseFloat(match[3].replace(',', '.'));
             if (match[4]) parsedData["date"] = match[4];
             if (match[5]) parsedData["JTSK"] = match[5].trim();
             if (match[6]) parsedData["positionType"] = match[6];
         }
-       
         arrayPoint.push(parsedData); 
     });
     return arrayPoint;
 };
 */
+
 function parsinWork(planing) {
     return planing.map(dataString => {
         const data = {
@@ -215,9 +215,12 @@ function parsinWork(planing) {
         };
 
         const regex = /namber:\s*([\w\d\(\)-]+)|position:\s*([\d\s,.]+)|vycka:\s*([\d.,]+)|date:\s*([\d.]+)|JTSK:\s*([\w\d\s]+)|positionType:\s*(\w+)/g;
-
+        
         let match;
+
         while ((match = regex.exec(dataString)) !== null) {
+  
+            
             if (match[1]) {
                 data["namber"] = match[1];
             }
@@ -245,6 +248,7 @@ function parsinWork(planing) {
         return data;
     });
 }
+
 //Effects анимация accordion
 let acc = document.getElementsByClassName("accordion");
 for (let i = 0; i < acc.length; i++) {
