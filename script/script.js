@@ -1,9 +1,10 @@
 import { edit } from './module/edit.js';//edit
 import { planing } from './module/planing.js'//planing
 console.log(edit, planing);
+/*
 document.addEventListener("planningWork", (planning) => {
     console.log(planning.detail.baseNiv, planning.detail.baseTrig, planning.detail.planningNiv, planning.detail.planningTrig);
-});
+});*/
     //Нивелирование - начальные точки(базовые)
     //Информацинный блок Нивелирования    
     let pointBaseNiv = document.querySelector("#levelingBasic"); 
@@ -140,7 +141,7 @@ document.addEventListener("planningWork", (planning) => {
     let planingWorkTax =  parsinWork(planing.trig); 
     console.log(planingWorkTax);
     
-    if (isCompletelyEmpty(planingWorkTax)) {
+    if (isArrayEmpty(planingWorkTax)) {
         let nouWork = document.createElement('div');
         nouWork.className = "pointJobs";
         nouWork.textContent = "No work tacheometry points"
@@ -219,7 +220,6 @@ function parsinWork(planing) {
         let match;
 
         while ((match = regex.exec(dataString)) !== null) {
-  
             
             if (match[1]) {
                 data["namber"] = match[1];

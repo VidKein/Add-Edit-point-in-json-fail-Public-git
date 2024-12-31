@@ -52,7 +52,7 @@ try {
         }
     })
 
-document.dispatchEvent(new CustomEvent("planningWork", { detail: {baseNiv: planing.baseNiv, baseTrig: planing.baseTrig ,planningNiv: planing.niv, planningTrig: planing.trig}}));
+//document.dispatchEvent(new CustomEvent("planningWork", { detail: {baseNiv: planing.baseNiv, baseTrig: planing.baseTrig ,planningNiv: planing.niv, planningTrig: planing.trig}}));
 
 } catch (error) {
     console.error('Ошибка при обработке файла:', error);
